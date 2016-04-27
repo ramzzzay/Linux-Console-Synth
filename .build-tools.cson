@@ -1,0 +1,41 @@
+providers: [
+  {
+    key: "bt"
+    config:
+      commands: [
+        {
+          project: "/home/ramzay/workspace/LinuxConsoleSynth"
+          source: "/home/ramzay/workspace/LinuxConsoleSynth/.build-tools.cson"
+          name: "Compil"
+          command: "clang++ *.cpp -o ./output/music.app"
+          wd: "."
+          env: {}
+          modifier:
+            save_all: {}
+            shell:
+              command: "bash -c"
+          environment:
+            name: "child_process"
+            config:
+              stdoe: "both"
+          stdout:
+            pipeline: []
+          stderr:
+            pipeline: []
+          output:
+            console:
+              close_success: true
+              queue_in_buffer: true
+              colors: true
+              stdin: false
+            linter:
+              no_trace: false
+              immediate: false
+            file:
+              path: "output.log"
+              queue_in_file: true
+          version: 2
+        }
+      ]
+  }
+]
