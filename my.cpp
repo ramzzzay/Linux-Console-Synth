@@ -16,6 +16,7 @@
 #include <linux/input.h>
 #include "songs/yesterday.h"
 #include "gtch.cpp"
+#include <vector>
 
 using namespace std;
 
@@ -24,10 +25,8 @@ my::my()
 	// TODO Auto-generated constructor stub
 x=y=z=w=n=0;
 flag = false;
-for(int i=0;i<=n;i++) {
-freq[n]=0;
-}
 fd = open("/dev/tty0", O_WRONLY);
+v.push_back(0);
 C0=16.35;Cdis0=17.32;D0=18.35;Ddis0=19.45;E0=20.60;F0=21.83;Fdis0=23.12;G0=24.50;Gdis0=25.96;A0=27.50;Adis0=29.14;//B0=30.87;
 C1=32.70;Cdis1=34.65;D1=36.71;Ddis1=38.89;E1=41.20;F1=43.65;Fdis1=46.25;G1=49.00;Gdis1=51.91;A1=55.00;Adis1=58.27;B1=61.74;
 C2=65.41;Cdis2=69.30;D2=73.42;Ddis2=77.78;E2=82.41;F2=87.31;Fdis2=92.50;G2=98.00;Gdis2=103.83;A2=110.00;Adis2=116.54;B2=123.47;
@@ -45,13 +44,13 @@ my::~my()
 }
 
 void my::music() {
-    /*int freq[] = {G4, F4, F4, A4, B4, Cdis5, D5, E5,F5,E5,D5,D5,D5,D5,C5,Adis4,A4,G4,Adis4,A4,A4,G4,E4,A5,G4,D4 };
+    /*int v[] = {G4, F4, F4, A4, B4, Cdis5, D5, E5,F5,E5,D5,D5,D5,D5,C5,Adis4,A4,G4,Adis4,A4,A4,G4,E4,A5,G4,D4 };
     cout << "Сколько нот сыграть ? " ;
     int n;
     cin >> n;*/
-    for (int i=0; i<n; i++)
+    for (int i : v)
     {
-            ioctl(fd, KIOCSOUND, 1193180/freq[i]);
+            ioctl(fd, KIOCSOUND, 1193180/i);
             usleep(500000);
 
     }
@@ -91,51 +90,51 @@ cin >> s;
 switch(s) { //переключатель в первой октаве
 case 1: //Пошли ноты в первой октаве
 	cout << "C0" <<endl;
-	freq[n]=C0;
+  v[n] = C0;
 	break;
 case 2:
 	cout << "Cdis0" <<endl;
-	freq[n]=Cdis0;
+  v[n] = Cdis0;
 	break;
 case 3:
 	cout << "D0" <<endl;
-	freq[n]=D0;
+  v[n] = D0;
 	break;
 case 4:
 	cout << "Ddis0" <<endl;
-	freq[n]=Ddis0;
+	v[n]=Ddis0;
 	break;
 case 5:
 	cout << "E0" <<endl;
-	freq[n]=E0;
+	v[n]=E0;
 	break;
 case 6:
 	cout << "F0" <<endl;
-	freq[n]=F0;
+	v[n]=F0;
 	break;
 case 7:
 	cout << "Fdis0" <<endl;
-	freq[n]=Fdis0;
+	v[n]=Fdis0;
 	break;
 case 8:
 	cout << "G0" << endl;
-	freq[n]=G0;
+	v[n]=G0;
 	break;
 case 9:
 	cout << "Gdis0" <<endl;
-	freq[n]=Gdis0;
+	v[n]=Gdis0;
 	break;
 case 10:
 	cout << "A0" <<endl;
-	freq[n]=A0;
+	v[n]=A0;
 	break;
 case 11:
 	cout << "Adis0" <<endl;
-	freq[n]=Adis0;
+	v[n]=Adis0;
 	break;
 case 12:
 	cout << "B(H)0" <<endl;
-	freq[n]=B0;
+	v[n]=B0;
 	break;
 default:
 	flag = true;
@@ -152,51 +151,51 @@ case 2:
 	switch(s) { //переключатель в второй октаве
 	case 1: //Пошли ноты в второй октаве
 		cout << "C1" <<endl;
-		freq[n]=C1;
+		v[n]=C1;
 		break;
 	case 2:
 		cout << "Cdis1" <<endl;
-		freq[n]=Cdis1;
+		v[n]=Cdis1;
 		break;
 	case 3:
 		cout << "D1" <<endl;
-		freq[n]=D1;
+		v[n]=D1;
 		break;
 	case 4:
 		cout << "Ddis1" <<endl;
-		freq[n]=Ddis1;
+		v[n]=Ddis1;
 		break;
 	case 5:
 		cout << "E1" <<endl;
-		freq[n]=E1;
+		v[n]=E1;
 		break;
 	case 6:
 		cout << "F1" <<endl;
-		freq[n]=F1;
+		v[n]=F1;
 		break;
 	case 7:
 		cout << "Fdis1" <<endl;
-		freq[n]=Fdis1;
+		v[n]=Fdis1;
 		break;
 	case 8:
 		cout << "G1" << endl;
-		freq[n]=G1;
+		v[n]=G1;
 		break;
 	case 9:
 		cout << "Gdis1" <<endl;
-		freq[n]=Gdis1;
+		v[n]=Gdis1;
 		break;
 	case 10:
 		cout << "A1" <<endl;
-		freq[n]=A1;
+		v[n]=A1;
 		break;
 	case 11:
 		cout << "Adis1" <<endl;
-		freq[n]=Adis1;
+		v[n]=Adis1;
 		break;
 	case 12:
 		cout << "B(H)1" <<endl;
-		freq[n]=B1;
+		v[n]=B1;
 		break;
 	default:
 		flag = true;
@@ -212,51 +211,51 @@ case 3:
 	switch(s) { //переключатель в третьей октаве
 	case 1: //Пошли ноты в третьей октаве
 		cout << "C2" <<endl;
-		freq[n]=C2;
+		v[n]=C2;
 		break;
 	case 2:
 		cout << "Cdis2" <<endl;
-		freq[n]=Cdis2;
+		v[n]=Cdis2;
 		break;
 	case 3:
 		cout << "D2" <<endl;
-		freq[n]=D2;
+		v[n]=D2;
 		break;
 	case 4:
 		cout << "Ddis2" <<endl;
-		freq[n]=Ddis2;
+		v[n]=Ddis2;
 		break;
 	case 5:
 		cout << "E2" <<endl;
-		freq[n]=E2;
+		v[n]=E2;
 		break;
 	case 6:
 		cout << "F2" <<endl;
-		freq[n]=F2;
+		v[n]=F2;
 		break;
 	case 7:
 		cout << "Fdis2" <<endl;
-		freq[n]=Fdis2;
+		v[n]=Fdis2;
 		break;
 	case 8:
 		cout << "G2" << endl;
-		freq[n]=G2;
+		v[n]=G2;
 		break;
 	case 9:
 		cout << "Gdis2" <<endl;
-		freq[n]=Gdis2;
+		v[n]=Gdis2;
 		break;
 	case 10:
 		cout << "A2" <<endl;
-		freq[n]=A2;
+		v[n]=A2;
 		break;
 	case 11:
 		cout << "Adis2" <<endl;
-		freq[n]=Adis2;
+		v[n]=Adis2;
 		break;
 	case 12:
 		cout << "B(H)2" <<endl;
-		freq[n]=B2;
+		v[n]=B2;
 		break;
 	default:
 		flag = true;
@@ -272,51 +271,51 @@ cin >> s;
 switch(s) { //переключатель в четвёртой октавы
 case 1: //Пошли ноты в первой октаве
 	cout << "C3" <<endl;
-	freq[n]=C3;
+	v[n]=C3;
 	break;
 case 2:
 	cout << "Cdis3" <<endl;
-	freq[n]=Cdis3;
+	v[n]=Cdis3;
 	break;
 case 3:
 	cout << "D3" <<endl;
-	freq[n]=D3;
+	v[n]=D3;
 	break;
 case 4:
 	cout << "Ddis3" <<endl;
-	freq[n]=Ddis3;
+	v[n]=Ddis3;
 	break;
 case 5:
 	cout << "E3" <<endl;
-	freq[n]=E3;
+	v[n]=E3;
 	break;
 case 6:
 	cout << "F3" <<endl;
-	freq[n]=F3;
+	v[n]=F3;
 	break;
 case 7:
 	cout << "Fdis3" <<endl;
-	freq[n]=Fdis3;
+	v[n]=Fdis3;
 	break;
 case 8:
 	cout << "G3" << endl;
-	freq[n]=G3;
+	v[n]=G3;
 	break;
 case 9:
 	cout << "Gdis3" <<endl;
-	freq[n]=Gdis3;
+	v[n]=Gdis3;
 	break;
 case 10:
 	cout << "A3" <<endl;
-	freq[n]=A3;
+	v[n]=A3;
 	break;
 case 11:
 	cout << "Adis3" <<endl;
-	freq[n]=Adis3;
+	v[n]=Adis3;
 	break;
 case 12:
 	cout << "B(H)3" <<endl;
-	freq[n]=B3;
+	v[n]=B3;
 	break;
 default:
 	flag = true;
@@ -332,51 +331,51 @@ cin >> s;
 switch(s) { //переключатель в первой октаве
 case 1: //Пошли ноты в первой октаве
 	cout << "C4" <<endl;
-	freq[n]=C4;
+	v[n]=C4;
 	break;
 case 2:
 	cout << "Cdis4" <<endl;
-	freq[n]=Cdis4;
+	v[n]=Cdis4;
 	break;
 case 3:
 	cout << "D4" <<endl;
-	freq[n]=D4;
+	v[n]=D4;
 	break;
 case 4:
 	cout << "Ddis4" <<endl;
-	freq[n]=Ddis4;
+	v[n]=Ddis4;
 	break;
 case 5:
 	cout << "E4" <<endl;
-	freq[n]=E4;
+	v[n]=E4;
 	break;
 case 6:
 	cout << "F4" <<endl;
-	freq[n]=F4;
+	v[n]=F4;
 	break;
 case 7:
 	cout << "Fdis4" <<endl;
-	freq[n]=Fdis4;
+	v[n]=Fdis4;
 	break;
 case 8:
 	cout << "G4" << endl;
-	freq[n]=G4;
+	v[n]=G4;
 	break;
 case 9:
 	cout << "Gdis4" <<endl;
-	freq[n]=Gdis4;
+	v[n]=Gdis4;
 	break;
 case 10:
 	cout << "A4" <<endl;
-	freq[n]=A4;
+	v[n]=A4;
 	break;
 case 11:
 	cout << "Adis4" <<endl;
-	freq[n]=Adis4;
+	v[n]=Adis4;
 	break;
 case 12:
 	cout << "B(H)4" <<endl;
-	freq[n]=B4;
+	v[n]=B4;
 	break;
 default:
 	flag = true;
@@ -392,51 +391,51 @@ cin >> s;
 switch(s) { //переключатель в первой октаве
 case 1: //Пошли ноты в первой октаве
 	cout << "C5" <<endl;
-	freq[n]=C5;
+	v[n]=C5;
 	break;
 case 2:
 	cout << "Cdis5" <<endl;
-	freq[n]=Cdis5;
+	v[n]=Cdis5;
 	break;
 case 3:
 	cout << "D5" <<endl;
-	freq[n]=D5;
+	v[n]=D5;
 	break;
 case 4:
 	cout << "Ddis5" <<endl;
-	freq[n]=Ddis5;
+	v[n]=Ddis5;
 	break;
 case 5:
 	cout << "E5" <<endl;
-	freq[n]=E5;
+	v[n]=E5;
 	break;
 case 6:
 	cout << "F5" <<endl;
-	freq[n]=F5;
+	v[n]=F5;
 	break;
 case 7:
 	cout << "Fdis5" <<endl;
-	freq[n]=Fdis5;
+	v[n]=Fdis5;
 	break;
 case 8:
 	cout << "G5" << endl;
-	freq[n]=G5;
+	v[n]=G5;
 	break;
 case 9:
 	cout << "Gdis5" <<endl;
-	freq[n]=Gdis5;
+	v[n]=Gdis5;
 	break;
 case 10:
 	cout << "A5" <<endl;
-	freq[n]=A5;
+	v[n]=A5;
 	break;
 case 11:
 	cout << "Adis5" <<endl;
-	freq[n]=Adis5;
+	v[n]=Adis5;
 	break;
 case 12:
 	cout << "B(H)5" <<endl;
-	freq[n]=B5;
+	v[n]=B5;
 	break;
 default:
 	flag = true;
@@ -452,51 +451,51 @@ cin >> s;
 switch(s) { //переключатель в первой октаве
 case 1: //Пошли ноты в первой октаве
 	cout << "C6" <<endl;
-	freq[n]=C6;
+	v[n]=C6;
 	break;
 case 2:
 	cout << "Cdis6" <<endl;
-	freq[n]=Cdis6;
+	v[n]=Cdis6;
 	break;
 case 3:
 	cout << "D6" <<endl;
-	freq[n]=D6;
+	v[n]=D6;
 	break;
 case 4:
 	cout << "Ddis6" <<endl;
-	freq[n]=Ddis6;
+	v[n]=Ddis6;
 	break;
 case 5:
 	cout << "E6" <<endl;
-	freq[n]=E6;
+	v[n]=E6;
 	break;
 case 6:
 	cout << "F6" <<endl;
-	freq[n]=F6;
+	v[n]=F6;
 	break;
 case 7:
 	cout << "Fdis6" <<endl;
-	freq[n]=Fdis6;
+	v[n]=Fdis6;
 	break;
 case 8:
 	cout << "G6" << endl;
-	freq[n]=G6;
+	v[n]=G6;
 	break;
 case 9:
 	cout << "Gdis6" <<endl;
-	freq[n]=Gdis6;
+	v[n]=Gdis6;
 	break;
 case 10:
 	cout << "A6" <<endl;
-	freq[n]=A6;
+	v[n]=A6;
 	break;
 case 11:
 	cout << "Adis6" <<endl;
-	freq[n]=Adis6;
+	v[n]=Adis6;
 	break;
 case 12:
 	cout << "B(H)6" <<endl;
-	freq[n]=B6;
+	v[n]=B6;
 	break;
 default:
 	flag = true;
@@ -512,51 +511,51 @@ cin >> s;
 switch(s) { //переключатель в первой октаве
 case 1: //Пошли ноты в первой октаве
 	cout << "C7" <<endl;
-	freq[n]=C7;
+	v[n]=C7;
 	break;
 case 2:
 	cout << "Cdis7" <<endl;
-	freq[n]=Cdis7;
+	v[n]=Cdis7;
 	break;
 case 3:
 	cout << "D7" <<endl;
-	freq[n]=D7;
+	v[n]=D7;
 	break;
 case 4:
 	cout << "Ddis7" <<endl;
-	freq[n]=Ddis7;
+	v[n]=Ddis7;
 	break;
 case 5:
 	cout << "E7" <<endl;
-	freq[n]=E7;
+	v[n]=E7;
 	break;
 case 6:
 	cout << "F7" <<endl;
-	freq[n]=F7;
+	v[n]=F7;
 	break;
 case 7:
 	cout << "Fdis7" <<endl;
-	freq[n]=Fdis7;
+	v[n]=Fdis7;
 	break;
 case 8:
 	cout << "G7" << endl;
-	freq[n]=G7;
+	v[n]=G7;
 	break;
 case 9:
 	cout << "Gdis7" <<endl;
-	freq[n]=Gdis7;
+	v[n]=Gdis7;
 	break;
 case 10:
 	cout << "A7" <<endl;
-	freq[n]=A7;
+	v[n]=A7;
 	break;
 case 11:
 	cout << "Adis7" <<endl;
-	freq[n]=Adis7;
+	v[n]=Adis7;
 	break;
 case 12:
 	cout << "B(H)7" <<endl;
-	freq[n]=B7;
+	v[n]=B7;
 	break;
 default:
 	flag = true;
@@ -566,7 +565,8 @@ default:
 check(flag);
 	break;
 case 9:
-my::songs();
+//my::songs();
+v = {G4, G4, F4, A4, B4, Cdis5, D5, E5,F5,E5,D5,D5,D5,D5,C5,Adis4,A4,G4,Adis4,A4,A4,G4,E4,A5,G4,D4 };
 n=x;
 break;
 default:
@@ -583,99 +583,99 @@ void my::play() {
 	for ( char s = 0; (s=getc(stdin)) != '-'; ) {
 	switch(s) { //Играем в стиле FL Studio
 	case 'z':
-		freq[0]=C3;
+		v[0]=C3;
 		my::music();
 		break;
 	case 's':
-		freq[0]=Cdis3;
+		v[0]=Cdis3;
 		my::music();
 		break;
 	case 'x':
-		freq[0]=D3;
+		v[0]=D3;
 		my::music();
 		break;
 	case 'd':
-		freq[0]=Ddis3;
+		v[0]=Ddis3;
 		my::music();
 		break;
 	case 'c':
-		freq[0]=E3;
+		v[0]=E3;
 		my::music();
 		break;
 	case 'v':
-		freq[0]=F3;
+		v[0]=F3;
 		my::music();
 		break;
 	case 'g':
-		freq[0]=Fdis3;
+		v[0]=Fdis3;
 		my::music();
 		break;
 	case 'b':
-		freq[0]=G3;
+		v[0]=G3;
 		my::music();
 		break;
 	case 'h':
-		freq[0]=Gdis3;
+		v[0]=Gdis3;
 		my::music();
 		break;
 	case 'n':
-		freq[0]=A3;
+		v[0]=A3;
 		my::music();
 		break;
 	case 'j':
-		freq[0]=Adis3;
+		v[0]=Adis3;
 		my::music();
 		break;
 	case 'm':
-		freq[0]=B3;
+		v[0]=B3;
 		my::music();
 		break;
 	case 'q':
-		freq[0]=C4;
+		v[0]=C4;
 		my::music();
 		break;
 	case '2':
-		freq[0]=Cdis4;
+		v[0]=Cdis4;
 		my::music();
 		break;
 	case 'w':
-		freq[0]=D4;
+		v[0]=D4;
 		my::music();
 		break;
 	case '3':
-		freq[0]=Ddis4;
+		v[0]=Ddis4;
 		my::music();
 		break;
 	case 'e':
-		freq[0]=E4;
+		v[0]=E4;
 		my::music();
 		break;
 	case 'r':
-		freq[0]=F4;
+		v[0]=F4;
 		my::music();
 		break;
 	case '5':
-		freq[0]=Fdis4;
+		v[0]=Fdis4;
 		my::music();
 		break;
 	case 't':
-		freq[0]=G4;
+		v[0]=G4;
 		my::music();
 		break;
 	case '6':
-		freq[0]=Gdis4;
+		v[0]=Gdis4;
 		my::music();
 		break;
 	case 'y':
-		freq[0]=A4;
+		v[0]=A4;
 		my::music();
 		break;
 	case '7':
-		freq[0]=Adis4;
+		v[0]=Adis4;
 		my::music();
 		break;
 	case 'u':
-		freq[0]=B4;
+		v[0]=B4;
 		my::music();
 		break;
 	default:

@@ -7,7 +7,7 @@ providers: [
           project: "/home/ramzay/workspace/LinuxConsoleSynth"
           source: "/home/ramzay/workspace/LinuxConsoleSynth/.build-tools.cson"
           name: "Compil"
-          command: "clang++ *.cpp -o ./output/music.app"
+          command: "clang++ *.cpp -o ./output/music.app -std=c++14"
           wd: "."
           env: {}
           modifier:
