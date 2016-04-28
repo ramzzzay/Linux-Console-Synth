@@ -1,0 +1,1 @@
+clang++ *.cpp -o ./output/music.app -std=c++14
